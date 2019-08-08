@@ -47,7 +47,7 @@ namespace MonteCarlo
             } while (Exit == false);
             return Value;
         }
-        public static double GetAnotherNumber(int Number)
+        public static double UseNumber(int Number)
         {
             Coordinate[] coordinates = new Coordinate[Number];
             int Counter = 0;
@@ -63,6 +63,7 @@ namespace MonteCarlo
             }
             double Pi = ((double)Counter / coordinates.Length) * 4;
             Console.WriteLine(Pi);
+            Console.WriteLine($"PI is {Math.PI}");
             return Pi;
         }
         static void Main(string[] args)
@@ -74,10 +75,24 @@ namespace MonteCarlo
             {
                 Console.Write("\nInput the length ");
                 int Number = GetNumber();
-                Console.Write("PI is ");
-                double Difference = Math.Abs(1 - GetAnotherNumber(Number) / Math.PI);
+                Console.Write("My estimated PI is ");
+                double Difference = Math.Abs(1 - UseNumber(Number) / Math.PI);
                 Console.WriteLine($"The difference between values is: {Difference}");
             }
         }
     }
 }
+// 1. Why do we multiply the value from step 5 above by 4?
+//    Answer: You are only using 1/4th of the circle. By multiplying by four you approximate it better.
+
+// 2. What do you observe in the output when running your program with parameters of increasing size?
+//    Answer: When I would input larger numbers my estimate of PI became closer to the actual value of PI.
+
+// 3. If you run the program multiple times with the same parameter, does the output remain the same? Why or why not?
+//    Answer: No it doesnt because of the random numbers used.
+
+// 4. Find a parameter that requires multiple seconds of run time.What is that parameter? How accurate is the estimated value of ?
+//    Answer: When I input 3,000,000 the difference between my estimated PI and PI because much smaller. 0.000165313096722963.
+
+// 5. Research one other use of Monte-Carlo methods. Record it in your exercise submission and be prepared to discuss it in class.
+//    Another use for the MonteCarlo method could be by randomly generate numbers, apply a constraint to them to then estimate the probability of an event occuring.
